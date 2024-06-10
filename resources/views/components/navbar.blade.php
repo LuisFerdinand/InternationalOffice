@@ -2,13 +2,14 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-1">
           <a href="/"><img class="h-10 w-10" src="https://www.mercubuana.ac.id/user/images/Logo_UMB_Putih_besar.png" alt="International Office Mercu Buana"></a>
-          <span class="text-gray-300 text-2xl">|</span>
-          <a href="/"><p class="rounded-md text-sm font-medium text-gray-300">
-              International<br>Office
-          </p></a>
-      </div>
+          <span class="text-gray-300 text-3xl">|</span>
+          <a href="/">
+            <p class="rounded-md text-sm font-medium text-gray-300">
+              International<br>Office</p>
+            </a>
+        </div>
           <div class="hidden md:block">
             <div class="ml-20 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -30,9 +31,15 @@
             </div>
             </div>
             </div>
-            <div class="hidden md:block">
-              <x-navlink href="{{ route('dashboard') }}" :active>Dashboard</x-navlink>
-              <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Register</a>
+            <div class="sm:flex hidden">
+              <x-navlink href="{{ route('dashboard') }}" :active >Dashboard</x-navlink>
+              
+              @auth
+                <form method="POST" action="{{ route('logout') }}" >
+                  @csrf
+                  <button type="submit" class=" text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</button>
+                </form>
+              @endauth
             </div>
         
 
@@ -77,7 +84,11 @@
                   </div>
               </div>
           </div></li>
-          <li><x-navlink href="#" :active>Dashboard</x-navlink></li>
+          <li><x-navlink href="{{ route('dashboard') }}" :active>Dashboard</x-navlink></li>
+          <li><form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class=" text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</button>
+          </form></li>
         </ul>
     </div>
 </div>
